@@ -1,0 +1,23 @@
+unit Provider.Constants;
+
+interface
+
+var
+  iCOD_FILIAL: Integer;
+  sRAZAO_FILIAL: string;
+
+implementation
+
+uses Service.Cadastro;
+
+procedure GET_Pessoas(iTIPO: integer);
+begin
+  ServiceCadastro.QryPessoas.Close;
+  ServiceCadastro.QryPessoas.SQL.Clear;
+  ServiceCadastro.QryPessoas.SQL.Add('SELECT * FROM pessoas WHERE pes_tipopessoa = :tipopessoa');
+  ServiceCadastro.QryPessoas.SQL.Add('ORDER BY pes_codigo DESC');
+  ServiceCadastro.QryPessoas.Params[0].AsInteger := iTipo;
+  ServiceCadastro.QryPessoas.Open();
+end;
+
+end.

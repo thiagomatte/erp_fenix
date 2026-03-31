@@ -1,0 +1,27 @@
+program FenixERP;
+
+uses
+  Vcl.Forms,
+  View.Principal in 'src\view\View.Principal.pas' {ViewPrincipal},
+  Service.Conexao in 'src\services\Service.Conexao.pas' {DMConexao: TDataModule},
+  Service.Cadastro in 'src\services\Service.Cadastro.pas' {ServiceCadastro: TDataModule},
+  Provider.Constants in 'src\providers\Provider.Constants.pas',
+  View.Base in 'src\view\View.Base.pas' {ViewBase},
+  View.Base.Lista in 'src\view\View.Base.Lista.pas' {ViewBaseListas},
+  View.Clientes in 'src\view\View.Clientes.pas' {ViewClientes},
+  View.Fornecedores in 'src\view\View.Fornecedores.pas' {ViewFornecedores};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TViewPrincipal, ViewPrincipal);
+  Application.CreateForm(TDMConexao, DMConexao);
+  Application.CreateForm(TServiceCadastro, ServiceCadastro);
+  Application.CreateForm(TViewBase, ViewBase);
+  Application.CreateForm(TViewBaseListas, ViewBaseListas);
+  Application.CreateForm(TViewClientes, ViewClientes);
+  Application.CreateForm(TViewFornecedores, ViewFornecedores);
+  Application.Run;
+end.

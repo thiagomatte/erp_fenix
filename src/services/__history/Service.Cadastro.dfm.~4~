@@ -1,0 +1,11 @@
+object DataModule1: TDataModule1
+  Height = 480
+  Width = 640
+  object QryPessoas: TFDQuery
+    Connection = DMConexao.FDConnection
+    SQL.Strings = (
+      'select * pessoas;')
+    Left = 72
+    Top = 136
+  end
+end

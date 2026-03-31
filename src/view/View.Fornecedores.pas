@@ -1,0 +1,108 @@
+unit View.Fornecedores;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View.Base.Lista, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.WinXCtrls, Vcl.WinXPanels, Vcl.Buttons,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls;
+
+type
+  TViewFornecedores = class(TViewBaseListas)
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    edtCodigo: TDBEdit;
+    edtRazao: TDBEdit;
+    edtFantasia: TDBEdit;
+    edtTelefone: TDBEdit;
+    edtCnpjCpf: TDBEdit;
+    DBEdit6: TDBEdit;
+    edtObservacao: TDBEdit;
+    pnlTituloCadCliente: TPanel;
+    Label1: TLabel;
+    procedure FormShow(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ViewFornecedores: TViewFornecedores;
+
+implementation
+
+{$R *.dfm}
+
+uses Service.Cadastro, Provider.Constants;
+
+procedure TViewFornecedores.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  if ServiceCadastro.QryPessoas.State in dsEditModes then
+    ServiceCadastro.QryPessoas.Cancel;
+
+  cpListas.ActiveCard := card_pesquisa;
+end;
+
+procedure TViewFornecedores.btnEditarClick(Sender: TObject);
+begin
+  inherited;
+  cpListas.ActiveCard := card_cadastro;
+  edtCnpjCpf.SetFocus;
+  ServiceCadastro.QryPessoas.Edit;
+end;
+
+procedure TViewFornecedores.btnExcluirClick(Sender: TObject);
+begin
+  inherited;
+
+  if ServiceCadastro.QryPessoas.RecordCount > 0 then
+  begin
+    ServiceCadastro.QryPessoas.Delete;
+    ShowMessage('Cliente deletado com sucesso!');
+    cpListas.ActiveCard := card_pesquisa;
+  end;
+
+end;
+
+procedure TViewFornecedores.btnNovoClick(Sender: TObject);
+begin
+  inherited;
+  cpListas.ActiveCard := card_cadastro;
+  edtCnpjCpf.SetFocus;
+  ServiceCadastro.QryPessoas.Insert;
+end;
+
+procedure TViewFornecedores.btnSalvarClick(Sender: TObject);
+begin
+  inherited;
+
+  if ServiceCadastro.QryPessoas.State in dsEditModes then
+  begin
+    ServiceCadastro.QryPessoasPES_TIPOPESSOA.AsInteger := 2;
+    ServiceCadastro.QryPessoas.Post;
+    ShowMessage('Fornecedor salvo com sucesso!');
+    cpListas.ActiveCard := card_pesquisa;
+  end;
+
+end;
+
+procedure TViewFornecedores.FormShow(Sender: TObject);
+begin
+  inherited;
+  GET_Pessoas(2);
+end;
+
+end.

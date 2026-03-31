@@ -1,0 +1,88 @@
+inherited ViewFornecedores: TViewFornecedores
+  Caption = 'ViewFornecedores'
+  StyleElements = [seFont, seClient, seBorder]
+  TextHeight = 15
+  inherited pnlTopo: TPanel
+    StyleElements = [seFont, seClient, seBorder]
+    inherited lblTitulo: TLabel
+      Width = 115
+      Height = 34
+      Caption = 'Fornecedores'
+      StyleElements = [seFont, seClient, seBorder]
+      ExplicitWidth = 115
+    end
+    inherited pnlIcone: TPanel
+      StyleElements = [seFont, seClient, seBorder]
+      inherited Image1: TImage
+        Width = 51
+        Height = 43
+        ExplicitWidth = 51
+        ExplicitHeight = 43
+      end
+    end
+    inherited Panel1: TPanel
+      StyleElements = [seFont, seClient, seBorder]
+      inherited lbSair: TLabel
+        Width = 126
+        Height = 46
+        StyleElements = [seFont, seClient, seBorder]
+      end
+    end
+  end
+  inherited pnlRodape: TPanel
+    StyleElements = [seFont, seClient, seBorder]
+  end
+  inherited pnlLinhaFundo: TPanel
+    StyleElements = [seFont, seClient, seBorder]
+    inherited cpListas: TCardPanel
+      StyleElements = [seFont, seClient, seBorder]
+      inherited card_pesquisa: TCard
+        StyleElements = [seFont, seClient, seBorder]
+        inherited Panel2: TPanel
+          StyleElements = [seFont, seClient, seBorder]
+          inherited lblTituloPesquisa: TLabel
+            StyleElements = [seFont, seClient, seBorder]
+          end
+          inherited edtPesquisa: TSearchBox
+            StyleElements = [seFont, seClient, seBorder]
+          end
+        end
+        inherited DBDados: TDBGrid
+          DataSource = DsDados
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'C'#243'digo'
+              Width = 74
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Raz'#227'o Social'
+              Width = 321
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'Telefone'
+              Width = 242
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'CPF / CNPJ'
+              Width = 417
+              Visible = True
+            end>
+        end
+      end
+      inherited card_cadastro: TCard
+        StyleElements = [seFont, seClient, seBorder]
+        ExplicitHeight = 543
+      end
+    end
+  end
+  inherited DsDados: TDataSource
+    DataSet = ServiceCadastro.QryPessoas
+  end
+end
