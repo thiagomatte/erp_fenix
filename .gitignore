@@ -1,0 +1,21 @@
+# Arquivos temporários
+*.~*
+*.tmp
+*.bak
+
+# Cache IDE
+*.dsk
+
+# Logs
+*.log
+
+# Instaladores / outputs
+install/
+
+# Outros
+Thumbs.db
+.DS_Store
+
+# GitHub / VSCode
+.vscode/
+.idea/
