@@ -9,9 +9,6 @@
 # Logs
 *.log
 
-# Instaladores / outputs
-install/
-
 # Outros
 Thumbs.db
 .DS_Store
